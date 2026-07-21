@@ -290,7 +290,7 @@
         <div class="bubble"></div>
     </div>
 
-    <!-- Toast Notification -->
+    <!-- Notification Toast -->
     <div id="toast" class="toast"></div>
 
     <!-- Login Card Container -->
@@ -329,7 +329,7 @@
                     <input type="checkbox" id="remember">
                     <span>Ingat saya</span>
                 </label>
-                <a href="#" class="forgot-password" onclick="alert('Fitur reset password dapat dihubungkan ke sistem backend Anda.')">Lupa Password?</a>
+                <a href="#" class="forgot-password" onclick="alert('Fitur reset password dapat dihubungkan ke sistem Anda.')">Lupa Password?</a>
             </div>
 
             <!-- Submit Button -->
@@ -379,7 +379,7 @@
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value.trim();
 
-            // Verifikasi Login (Dapat disesuaikan atau dihubungkan ke Database/Backend)
+            // Verifikasi Login (Dapat disesuaikan)
             if (username === 'admin' && password === 'pink123') {
                 showToast('✨ Login Berhasil! Selamat datang kembali.', 'success');
                 setTimeout(() => {
