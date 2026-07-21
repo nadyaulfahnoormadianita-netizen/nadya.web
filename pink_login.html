@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Login - Pink Theme</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffeef2 0%, #ffd3e0 50%, #fca1be 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background Decorative Bubbles */
+        .background-decor {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(5px);
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .bubble:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .bubble:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            bottom: 15%;
+            right: 8%;
+            animation-delay: 2s;
+        }
+
+        .bubble:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 10%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+
+        .bubble:nth-child(4) {
+            width: 150px;
+            height: 150px;
+            top: 15%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(10deg); }
+        }
+
+        /* Glassmorphism Card Container */
+        .login-card {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 420px;
+            padding: 40px 35px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 40px rgba(235, 87, 137, 0.15),
+                        0 8px 16px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .login-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Header Section */
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .avatar-icon {
+            width: 75px;
+            height: 75px;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 32px;
+            margin-bottom: 15px;
+            box-shadow: 0 8px 20px rgba(255, 117, 140, 0.4);
+        }
+
+        .login-header h2 {
+            color: #d81b60;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .login-header p {
+            color: #885e70;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        /* Form Controls */
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #ad3d6a;
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper i.input-icon {
+            position: absolute;
+            left: 15px;
+            color: #ff85a2;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 13px 42px 13px 45px;
+            border: 2px solid #ffd0dd;
+            border-radius: 12px;
+            background: #fff;
+            font-size: 14px;
+            color: #4a2c3a;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #c9a3b2;
+        }
+
+        .input-wrapper input:focus {
+            border-color: #ff6584;
+            box-shadow: 0 0 0 4px rgba(255, 101, 132, 0.15);
+        }
+
+        .input-wrapper input:focus + .input-icon,
+        .input-wrapper input:focus ~ .input-icon {
+            color: #ff4370;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            cursor: pointer;
+            color: #ff85a2;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-password:hover {
+            color: #ff4370;
+        }
+
+        /* Form Extra Options */
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            margin-bottom: 25px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #7a5265;
+            cursor: pointer;
+        }
+
+        .remember-me input[type="checkbox"] {
+            accent-color: #ff4370;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            color: #ff4370;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+            color: #d81b60;
+        }
+
+        /* Submit Button */
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ff6584 0%, #ff4370 100%);
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 67, 112, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #ff4370 0%, #d81b60 100%);
+            box-shadow: 0 12px 25px rgba(216, 27, 96, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* Demo Box */
+        .demo-info {
+            margin-top: 22px;
+            padding: 12px;
+            background-color: #fff0f5;
+            border-left: 4px solid #ff6584;
+            border-radius: 6px;
+            font-size: 11px;
+            color: #8c4360;
+            line-height: 1.5;
+        }
+
+        .demo-info code {
+            background: #ffe3ec;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #d81b60;
+            font-weight: bold;
+        }
+
+        /* Notification Toast */
+        .toast {
+            visibility: hidden;
+            min-width: 280px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 12px;
+            padding: 14px 20px;
+            position: fixed;
+            z-index: 100;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s, top 0.3s, visibility 0.3s;
+        }
+
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+            top: 40px;
+        }
+
+        .toast.success {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+
+        .toast.error {
+            background: linear-gradient(135deg, #ff4757, #ff6b81);
+        }
+
+        /* Footer Link */
+        .card-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #7a5265;
+        }
+
+        .card-footer a {
+            color: #ff4370;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .card-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Animated Elements -->
+    <div class="background-decor">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Login Card Container -->
+    <div class="login-card">
+        <div class="login-header">
+            <div class="avatar-icon">
+                <i class="fa-solid fa-user-astronaut"></i>
+            </div>
+            <h2>Selamat Datang</h2>
+            <p>Silakan masukan username & password Anda</p>
+        </div>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <!-- Input Username -->
+            <div class="input-group">
+                <label for="username">Username</label>
+                <div class="input-wrapper">
+                    <input type="text" id="username" placeholder="Masukkan username" required autocomplete="off">
+                    <i class="fa-solid fa-user input-icon"></i>
+                </div>
+            </div>
+
+            <!-- Input Password -->
+            <div class="input-group">
+                <label for="password">Password</label>
+                <div class="input-wrapper">
+                    <input type="password" id="password" placeholder="Masukkan password" required>
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <i class="fa-solid fa-eye toggle-password" id="togglePassword" onclick="togglePasswordVisibility()"></i>
+                </div>
+            </div>
+
+            <!-- Options -->
+            <div class="form-options">
+                <label class="remember-me">
+                    <input type="checkbox" id="remember">
+                    <span>Ingat saya</span>
+                </label>
+                <a href="#" class="forgot-password" onclick="alert('Fitur reset password dapat dihubungkan ke email backend Anda.')">Lupa Password?</a>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-submit">
+                <i class="fa-solid fa-right-to-bracket" style="margin-right: 8px;"></i> Masuk
+            </button>
+        </form>
+
+        <!-- Informational Demo Box -->
+        <div class="demo-info">
+            <i class="fa-solid fa-circle-info"></i> <strong>Akun Uji Coba:</strong><br>
+            Username: <code>admin</code> | Password: <code>pink123</code>
+        </div>
+
+        <div class="card-footer">
+            Belum punya akun? <a href="#" onclick="alert('Form pendaftaran dapat disesuaikan!')">Daftar sekarang</a>
+        </div>
+    </div>
+
+    <!-- JavaScript logic -->
+    <script>
+        // Toggle password view/hide
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('togglePassword');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Show toast notification
+        function showToast(message, type) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.className = 'toast show ' + type;
+            
+            setTimeout(() => {
+                toast.className = toast.className.replace('show', '');
+            }, 3000);
+        }
+
+        // Handle Login Submission
+        function handleLogin(event) {
+            event.preventDefault(); // Stop page refresh
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            // Credential check
+            if (username === 'admin' && password === 'pink123') {
+                showToast('✨ Login Berhasil! Selamat datang kembali.', 'success');
+                setTimeout(() => {
+                    // Tindakan setelah login berhasil (contoh: redirect atau info)
+                    alert('Selamat! Anda berhasil masuk ke sistem web bertema Pink ✨');
+                }, 1000);
+            } else {
+                showToast('❌ Username atau Password salah!', 'error');
+            }
+        }
+    </script>
+</body>
+</html>
