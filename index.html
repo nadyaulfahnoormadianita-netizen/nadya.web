@@ -44,37 +44,10 @@
             animation: float 8s infinite ease-in-out;
         }
 
-        .bubble:nth-child(1) {
-            width: 120px;
-            height: 120px;
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .bubble:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            bottom: 15%;
-            right: 8%;
-            animation-delay: 2s;
-        }
-
-        .bubble:nth-child(3) {
-            width: 80px;
-            height: 80px;
-            bottom: 10%;
-            left: 15%;
-            animation-delay: 4s;
-        }
-
-        .bubble:nth-child(4) {
-            width: 150px;
-            height: 150px;
-            top: 15%;
-            right: 15%;
-            animation-delay: 1s;
-        }
+        .bubble:nth-child(1) { width: 120px; height: 120px; top: 10%; left: 10%; animation-delay: 0s; }
+        .bubble:nth-child(2) { width: 200px; height: 200px; bottom: 15%; right: 8%; animation-delay: 2s; }
+        .bubble:nth-child(3) { width: 80px; height: 80px; bottom: 10%; left: 15%; animation-delay: 4s; }
+        .bubble:nth-child(4) { width: 150px; height: 150px; top: 15%; right: 15%; animation-delay: 1s; }
 
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -258,24 +231,6 @@
             transform: translateY(-2px);
         }
 
-        .btn-submit:active {
-            transform: translateY(0);
-       <!-- Hapus atau beri komentar pada bagian ini -->
-<div class="demo-info">
-    <i class="fa-solid fa-circle-info"></i> <strong>Akun Uji Coba:</strong><br>
-    Username: <code>admin</code> | Password: <code>pink123</code>
-</div>
-        }
-
-        .demo-info code {
-            background: #ffe3ec;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: monospace;
-            color: #d81b60;
-            font-weight: bold;
-        }
-
         /* Notification Toast */
         .toast {
             visibility: hidden;
@@ -303,18 +258,13 @@
             top: 40px;
         }
 
-        .toast.success {
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
-        }
-
-        .toast.error {
-            background: linear-gradient(135deg, #ff4757, #ff6b81);
-        }
+        .toast.success { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+        .toast.error { background: linear-gradient(135deg, #ff4757, #ff6b81); }
 
         /* Footer Link */
         .card-footer {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 25px;
             font-size: 13px;
             color: #7a5265;
         }
@@ -379,7 +329,7 @@
                     <input type="checkbox" id="remember">
                     <span>Ingat saya</span>
                 </label>
-                <a href="#" class="forgot-password" onclick="alert('Fitur reset password dapat dihubungkan ke email backend Anda.')">Lupa Password?</a>
+                <a href="#" class="forgot-password" onclick="alert('Fitur reset password dapat dihubungkan ke sistem backend Anda.')">Lupa Password?</a>
             </div>
 
             <!-- Submit Button -->
@@ -387,12 +337,6 @@
                 <i class="fa-solid fa-right-to-bracket" style="margin-right: 8px;"></i> Masuk
             </button>
         </form>
-
-        <!-- Informational Demo Box -->
-        <div class="demo-info">
-            <i class="fa-solid fa-circle-info"></i> <strong>Akun Uji Coba:</strong><br>
-            Username: <code>admin</code> | Password: <code>pink123</code>
-        </div>
 
         <div class="card-footer">
             Belum punya akun? <a href="#" onclick="alert('Form pendaftaran dapat disesuaikan!')">Daftar sekarang</a>
@@ -435,11 +379,10 @@
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value.trim();
 
-            // Credential check
+            // Verifikasi Login (Dapat disesuaikan atau dihubungkan ke Database/Backend)
             if (username === 'admin' && password === 'pink123') {
                 showToast('✨ Login Berhasil! Selamat datang kembali.', 'success');
                 setTimeout(() => {
-                    // Tindakan setelah login berhasil (contoh: redirect atau info)
                     alert('Selamat! Anda berhasil masuk ke sistem web bertema Pink ✨');
                 }, 1000);
             } else {
