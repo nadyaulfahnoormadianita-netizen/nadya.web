@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Pink Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-pink: #ff6584; --secondary-pink: #ff4370; --dark-pink: #d81b60;
+            --light-pink: #fff0f5; --soft-bg: #fff5f8; --sidebar-width: 260px;
+            --text-dark: #3a222e; --text-muted: #885e70; --shadow-soft: 0 10px 30px rgba(235, 87, 137, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--soft-bg); color: var(--text-dark); display: flex; min-height: 100vh; }
+
+        .sidebar {
+            width: var(--sidebar-width); background: linear-gradient(180deg, #ffffff 0%, #ffeef3 100%);
+            border-right: 1px solid rgba(255, 182, 193, 0.4); display: flex; flex-direction: column;
+            position: fixed; height: 100vh; z-index: 100; box-shadow: 4px 0 20px rgba(235, 87, 137, 0.05);
+        }
+
+        .sidebar-brand {
+            padding: 25px 20px; display: flex; align-items: center; gap: 12px;
+            border-bottom: 1px solid rgba(255, 182, 193, 0.3);
+        }
+        .sidebar-brand i { font-size: 24px; color: var(--secondary-pink); background: var(--light-pink); padding: 10px; border-radius: 12px; }
+        .sidebar-brand h3 { font-size: 18px; font-weight: 700; color: var(--dark-pink); }
+
+        .sidebar-menu { padding: 20px 15px; flex: 1; overflow-y: auto; }
+        .menu-category { font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-muted); margin: 15px 0 10px 12px; }
+        
+        .menu-item {
+            display: flex; align-items: center; padding: 12px 16px; color: var(--text-muted); text-decoration: none;
+            border-radius: 14px; font-size: 14px; font-weight: 500; margin-bottom: 6px; transition: all 0.3s ease;
+        }
+        .menu-item i { font-size: 18px; width: 30px; }
+        .menu-item:hover { background: var(--light-pink); color: var(--secondary-pink); transform: translateX(4px); }
+        .menu-item.active { background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink)); color: white; box-shadow: 0 8px 18px rgba(255, 67, 112, 0.3); }
+        .menu-item.active i { color: white; }
+
+        .badge-count { margin-left: auto; background: var(--secondary-pink); color: white; font-size: 11px; padding: 2px 8px; border-radius: 20px; }
+        .menu-item.active .badge-count { background: white; color: var(--secondary-pink); }
+
+        .sidebar-footer { padding: 20px 15px; border-top: 1px solid rgba(255, 182, 193, 0.3); }
+        .btn-logout {
+            display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px;
+            background: #ffe3eb; color: var(--dark-pink); border: none; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s;
+        }
+        .btn-logout:hover { background: var(--secondary-pink); color: white; }
+
+        .main-content { margin-left: var(--sidebar-width); flex: 1; padding: 30px; }
+        
+        .top-navbar {
+            display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px); padding: 16px 25px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: var(--shadow-soft); margin-bottom: 30px;
+        }
+        .search-box { position: relative; width: 300px; }
+        .search-box input { width: 100%; padding: 10px 15px 10px 40px; border: 1.5px solid #ffd0dd; border-radius: 12px; outline: none; }
+        .search-box i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #ff85a2; }
+
+        .user-profile { display: flex; align-items: center; gap: 15px; }
+        .profile-avatar { width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--primary-pink); }
+
+        .welcome-card {
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%); border-radius: 24px; padding: 30px;
+            color: white; position: relative; overflow: hidden; box-shadow: 0 15px 30px rgba(255, 117, 140, 0.3); margin-bottom: 30px;
+        }
+        .welcome-card h1 { font-size: 26px; margin-bottom: 8px; }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .stat-card {
+            background: white; padding: 22px; border-radius: 20px; border: 1px solid rgba(255, 208, 221, 0.5);
+            box-shadow: var(--shadow-soft); display: flex; align-items: center; justify-content: space-between;
+        }
+        .stat-details h3 { font-size: 24px; color: var(--dark-pink); }
+        .stat-icon { width: 55px; height: 55px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; background: #ffe3ec; color: #ff4370; }
+
+        .table-card { background: white; border-radius: 20px; padding: 25px; border: 1px solid rgba(255, 208, 221, 0.5); box-shadow: var(--shadow-soft); }
+        .table-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .table-header h3 { font-size: 18px; color: var(--dark-pink); }
+        
+        .btn-add {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink)); color: white; border: none;
+            padding: 10px 18px; border-radius: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;
+        }
+
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th { padding: 12px 15px; font-size: 12px; color: var(--text-muted); background: #fff0f5; }
+        td { padding: 14px 15px; font-size: 13px; border-bottom: 1px solid #ffeef3; }
+        .badge-status { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; background: #e8f5e9; color: #2e7d32; }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGASI -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <i class="fa-solid fa-gem"></i>
+            <h3>PinkAdmin</h3>
+        </div>
+
+        <div class="sidebar-menu">
+            <div class="menu-category">Utama</div>
+            <a href="#" class="menu-item active">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <div class="menu-category">Kepegawaian</div>
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-users"></i>
+                <span>Data Karyawan</span>
+                <span class="badge-count">128</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Input Data Baru</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-briefcase"></i>
+                <span>Jabatan & Divisi</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Presensi & Absensi</span>
+            </a>
+
+            <div class="menu-category">Sistem</div>
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-sliders"></i>
+                <span>Pengaturan Sistem</span>
+            </a>
+        </div>
+
+        <div class="sidebar-footer">
+            <button class="btn-logout" onclick="logout()">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Keluar (Logout)</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <header class="top-navbar">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Cari data...">
+            </div>
+            <div class="user-profile">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" alt="Avatar" class="profile-avatar">
+                <div>
+                    <h4>Clarissa Pink</h4>
+                    <p style="font-size: 11px; color: #885e70;">Super Admin</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="welcome-card">
+            <h1>Selamat Datang Kembali! ✨</h1>
+            <p>Kelola data pegawai dan sistem kepegawaian Anda dengan mudah hari ini.</p>
+        </section>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-details">
+                    <h3>128</h3>
+                    <p>Total Karyawan</p>
+                </div>
+                <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-details">
+                    <h3>12</h3>
+                    <p>Total Jabatan</p>
+                </div>
+                <div class="stat-icon"><i class="fa-solid fa-briefcase"></i></div>
+            </div>
+        </section>
+
+        <section class="table-card">
+            <div class="table-header">
+                <h3>Data Karyawan Terbaru</h3>
+                <button class="btn-add"><i class="fa-solid fa-plus"></i> Tambah Baru</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama Karyawan</th>
+                        <th>Jabatan</th>
+                        <th>Divisi</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Siti Nurhaliza</strong></td>
+                        <td>UI/UX Designer</td>
+                        <td>Creative</td>
+                        <td><span class="badge-status">Aktif</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Amanda Manopo</strong></td>
+                        <td>HR Specialist</td>
+                        <td>Human Resources</td>
+                        <td><span class="badge-status">Aktif</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script>
+        function logout() {
+            if(confirm("Apakah Anda yakin ingin keluar?")) {
+                window.location.href = "index.html"; // Kembali ke login
+            }
+        }
+    </script>
+</body>
+</html>
