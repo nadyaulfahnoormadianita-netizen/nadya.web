@@ -4,307 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman Login - Pink Theme</title>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            min-height: 100vh; display: flex; justify-content: center; align-items: center;
             background: linear-gradient(135deg, #ffeef2 0%, #ffd3e0 50%, #fca1be 100%);
-            position: relative;
-            overflow: hidden;
+            position: relative; overflow: hidden;
         }
-
-        /* Background Decorative Bubbles */
-        .background-decor {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-        }
-
+        .background-decor { position: absolute; width: 100%; height: 100%; overflow: hidden; z-index: 1; }
         .bubble {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(5px);
-            animation: float 8s infinite ease-in-out;
+            position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(5px); animation: float 8s infinite ease-in-out;
         }
-
         .bubble:nth-child(1) { width: 120px; height: 120px; top: 10%; left: 10%; animation-delay: 0s; }
         .bubble:nth-child(2) { width: 200px; height: 200px; bottom: 15%; right: 8%; animation-delay: 2s; }
         .bubble:nth-child(3) { width: 80px; height: 80px; bottom: 10%; left: 15%; animation-delay: 4s; }
         .bubble:nth-child(4) { width: 150px; height: 150px; top: 15%; right: 15%; animation-delay: 1s; }
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-25px) rotate(10deg); } }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-25px) rotate(10deg); }
-        }
-
-        /* Glassmorphism Card Container */
         .login-card {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            max-width: 420px;
-            padding: 40px 35px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(15px);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 20px 40px rgba(235, 87, 137, 0.15),
-                        0 8px 16px rgba(0, 0, 0, 0.05);
+            position: relative; z-index: 10; width: 100%; max-width: 420px; padding: 40px 35px;
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(15px); border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 20px 40px rgba(235, 87, 137, 0.15);
             transition: transform 0.3s ease;
         }
-
-        .login-card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Header Section */
-        .login-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
+        .login-card:hover { transform: translateY(-5px); }
+        .login-header { text-align: center; margin-bottom: 30px; }
         .avatar-icon {
-            width: 75px;
-            height: 75px;
-            background: linear-gradient(135deg, #ff758c, #ff7eb3);
-            border-radius: 50%;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 32px;
-            margin-bottom: 15px;
-            box-shadow: 0 8px 20px rgba(255, 117, 140, 0.4);
+            width: 75px; height: 75px; background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            border-radius: 50%; display: inline-flex; justify-content: center; align-items: center;
+            color: white; font-size: 32px; margin-bottom: 15px; box-shadow: 0 8px 20px rgba(255, 117, 140, 0.4);
         }
+        .login-header h2 { color: #d81b60; font-size: 26px; font-weight: 700; }
+        .login-header p { color: #885e70; font-size: 13px; margin-top: 5px; }
 
-        .login-header h2 {
-            color: #d81b60;
-            font-size: 26px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .login-header p {
-            color: #885e70;
-            font-size: 13px;
-            margin-top: 5px;
-        }
-
-        /* Form Controls */
-        .input-group {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: #ad3d6a;
-            margin-bottom: 8px;
-        }
-
-        .input-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .input-wrapper i.input-icon {
-            position: absolute;
-            left: 15px;
-            color: #ff85a2;
-            font-size: 16px;
-            transition: color 0.3s ease;
-        }
-
+        .input-group { position: relative; margin-bottom: 20px; }
+        .input-group label { display: block; font-size: 13px; font-weight: 600; color: #ad3d6a; margin-bottom: 8px; }
+        .input-wrapper { position: relative; display: flex; align-items: center; }
+        .input-wrapper i.input-icon { position: absolute; left: 15px; color: #ff85a2; font-size: 16px; }
         .input-wrapper input {
-            width: 100%;
-            padding: 13px 42px 13px 45px;
-            border: 2px solid #ffd0dd;
-            border-radius: 12px;
-            background: #fff;
-            font-size: 14px;
-            color: #4a2c3a;
-            outline: none;
-            transition: all 0.3s ease;
+            width: 100%; padding: 13px 42px 13px 45px; border: 2px solid #ffd0dd;
+            border-radius: 12px; background: #fff; font-size: 14px; color: #4a2c3a; outline: none; transition: all 0.3s ease;
         }
+        .input-wrapper input:focus { border-color: #ff6584; box-shadow: 0 0 0 4px rgba(255, 101, 132, 0.15); }
+        .toggle-password { position: absolute; right: 15px; cursor: pointer; color: #ff85a2; font-size: 16px; }
+        .toggle-password:hover { color: #ff4370; }
 
-        .input-wrapper input::placeholder {
-            color: #c9a3b2;
-        }
+        .form-options { display: flex; justify-content: space-between; align-items: center; font-size: 12px; margin-bottom: 25px; }
+        .remember-me { display: flex; align-items: center; gap: 6px; color: #7a5265; cursor: pointer; }
+        .remember-me input[type="checkbox"] { accent-color: #ff4370; width: 15px; height: 15px; }
+        .forgot-password { color: #ff4370; text-decoration: none; font-weight: 500; }
 
-        .input-wrapper input:focus {
-            border-color: #ff6584;
-            box-shadow: 0 0 0 4px rgba(255, 101, 132, 0.15);
-        }
-
-        .input-wrapper input:focus + .input-icon,
-        .input-wrapper input:focus ~ .input-icon {
-            color: #ff4370;
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 15px;
-            cursor: pointer;
-            color: #ff85a2;
-            font-size: 16px;
-            transition: color 0.3s ease;
-        }
-
-        .toggle-password:hover {
-            color: #ff4370;
-        }
-
-        /* Form Extra Options */
-        .form-options {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-            margin-bottom: 25px;
-        }
-
-        .remember-me {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: #7a5265;
-            cursor: pointer;
-        }
-
-        .remember-me input[type="checkbox"] {
-            accent-color: #ff4370;
-            width: 15px;
-            height: 15px;
-            cursor: pointer;
-        }
-
-        .forgot-password {
-            color: #ff4370;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .forgot-password:hover {
-            text-decoration: underline;
-            color: #d81b60;
-        }
-
-        /* Submit Button */
         .btn-submit {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 12px;
+            width: 100%; padding: 14px; border: none; border-radius: 12px;
             background: linear-gradient(135deg, #ff6584 0%, #ff4370 100%);
-            color: white;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(255, 67, 112, 0.35);
-            transition: all 0.3s ease;
+            color: white; font-size: 15px; font-weight: 600; cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 67, 112, 0.35); transition: all 0.3s ease;
         }
+        .btn-submit:hover { background: linear-gradient(135deg, #ff4370 0%, #d81b60 100%); transform: translateY(-2px); }
 
-        .btn-submit:hover {
-            background: linear-gradient(135deg, #ff4370 0%, #d81b60 100%);
-            box-shadow: 0 12px 25px rgba(216, 27, 96, 0.4);
-            transform: translateY(-2px);
-        }
-
-        /* Notification Toast */
         .toast {
-            visibility: hidden;
-            min-width: 280px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 12px;
-            padding: 14px 20px;
-            position: fixed;
-            z-index: 100;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 14px;
-            font-weight: 500;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            opacity: 0;
-            transition: opacity 0.3s, top 0.3s, visibility 0.3s;
+            visibility: hidden; min-width: 280px; background-color: #333; color: #fff; text-align: center;
+            border-radius: 12px; padding: 14px 20px; position: fixed; z-index: 100; top: 30px; left: 50%;
+            transform: translateX(-50%); font-size: 14px; font-weight: 500; opacity: 0; transition: all 0.3s;
         }
-
-        .toast.show {
-            visibility: visible;
-            opacity: 1;
-            top: 40px;
-        }
-
+        .toast.show { visibility: visible; opacity: 1; top: 40px; }
         .toast.success { background: linear-gradient(135deg, #2ecc71, #27ae60); }
         .toast.error { background: linear-gradient(135deg, #ff4757, #ff6b81); }
 
-        /* Footer Link */
-        .card-footer {
-            text-align: center;
-            margin-top: 25px;
-            font-size: 13px;
-            color: #7a5265;
-        }
-
-        .card-footer a {
-            color: #ff4370;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .card-footer a:hover {
-            text-decoration: underline;
-        }
+        .card-footer { text-align: center; margin-top: 25px; font-size: 13px; color: #7a5265; }
+        .card-footer a { color: #ff4370; text-decoration: none; font-weight: 600; }
     </style>
 </head>
 <body>
 
-    <!-- Background Animated Elements -->
     <div class="background-decor">
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
+        <div class="bubble"></div><div class="bubble"></div>
+        <div class="bubble"></div><div class="bubble"></div>
     </div>
 
-    <!-- Notification Toast -->
     <div id="toast" class="toast"></div>
 
-    <!-- Login Card Container -->
     <div class="login-card">
         <div class="login-header">
-            <div class="avatar-icon">
-                <i class="fa-solid fa-user-astronaut"></i>
-            </div>
+            <div class="avatar-icon"><i class="fa-solid fa-user-astronaut"></i></div>
             <h2>Selamat Datang</h2>
             <p>Silakan masukan username & password Anda</p>
         </div>
 
         <form id="loginForm" onsubmit="handleLogin(event)">
-            <!-- Input Username -->
             <div class="input-group">
                 <label for="username">Username</label>
                 <div class="input-wrapper">
@@ -313,7 +104,6 @@
                 </div>
             </div>
 
-            <!-- Input Password -->
             <div class="input-group">
                 <label for="password">Password</label>
                 <div class="input-wrapper">
@@ -323,16 +113,14 @@
                 </div>
             </div>
 
-            <!-- Options -->
             <div class="form-options">
                 <label class="remember-me">
                     <input type="checkbox" id="remember">
                     <span>Ingat saya</span>
                 </label>
-                <a href="#" class="forgot-password" onclick="alert('Fitur reset password dapat dihubungkan ke sistem Anda.')">Lupa Password?</a>
+                <a href="#" class="forgot-password" onclick="alert('Fitur reset password belum dihubungkan.')">Lupa Password?</a>
             </div>
 
-            <!-- Submit Button -->
             <button type="submit" class="btn-submit">
                 <i class="fa-solid fa-right-to-bracket" style="margin-right: 8px;"></i> Masuk
             </button>
@@ -343,47 +131,36 @@
         </div>
     </div>
 
-    <!-- JavaScript logic -->
     <script>
-        // Toggle password view/hide
         function togglePasswordVisibility() {
             const passwordInput = document.getElementById('password');
             const toggleIcon = document.getElementById('togglePassword');
-            
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                toggleIcon.classList.remove('fa-eye');
-                toggleIcon.classList.add('fa-eye-slash');
+                toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
             } else {
                 passwordInput.type = 'password';
-                toggleIcon.classList.remove('fa-eye-slash');
-                toggleIcon.classList.add('fa-eye');
+                toggleIcon.classList.replace('fa-eye-slash', 'fa-eye');
             }
         }
 
-        // Show toast notification
         function showToast(message, type) {
             const toast = document.getElementById('toast');
             toast.innerText = message;
             toast.className = 'toast show ' + type;
-            
-            setTimeout(() => {
-                toast.className = toast.className.replace('show', '');
-            }, 3000);
+            setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 3000);
         }
 
-        // Handle Login Submission
         function handleLogin(event) {
-            event.preventDefault(); // Stop page refresh
-            
+            event.preventDefault();
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value.trim();
 
-            // Verifikasi Login (Dapat disesuaikan)
             if (username === 'admin' && password === 'pink123') {
-                showToast('✨ Login Berhasil! Selamat datang kembali.', 'success');
+                showToast('✨ Login Berhasil! Membuka Dashboard...', 'success');
                 setTimeout(() => {
-                    alert('Selamat! Anda berhasil masuk ke sistem web bertema Pink ✨');
+                    // Berpindah ke halaman dashboard.html
+                    window.location.href = "dashboard.html";
                 }, 1000);
             } else {
                 showToast('❌ Username atau Password salah!', 'error');
@@ -392,692 +169,3 @@
     </script>
 </body>
 </html>
-
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin - Pink Premium</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary-pink: #ff6584;
-            --secondary-pink: #ff4370;
-            --dark-pink: #d81b60;
-            --light-pink: #fff0f5;
-            --soft-bg: #fff5f8;
-            --sidebar-width: 260px;
-            --text-dark: #3a222e;
-            --text-muted: #885e70;
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --shadow-soft: 0 10px 30px rgba(235, 87, 137, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: var(--soft-bg);
-            color: var(--text-dark);
-            display: flex;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* --- SIDEBAR BAR --- */
-        .sidebar {
-            width: var(--sidebar-width);
-            background: linear-gradient(180deg, #ffffff 0%, #ffeef3 100%);
-            border-right: 1px solid rgba(255, 182, 193, 0.4);
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            height: 100vh;
-            z-index: 100;
-            transition: all 0.3s ease;
-            box-shadow: 4px 0 20px rgba(235, 87, 137, 0.05);
-        }
-
-        .sidebar-brand {
-            padding: 25px 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 1px solid rgba(255, 182, 193, 0.3);
-        }
-
-        .sidebar-brand i {
-            font-size: 24px;
-            color: var(--secondary-pink);
-            background: var(--light-pink);
-            padding: 10px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(255, 67, 112, 0.15);
-        }
-
-        .sidebar-brand h3 {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--dark-pink);
-            letter-spacing: 0.5px;
-        }
-
-        .sidebar-menu {
-            padding: 20px 15px;
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .menu-category {
-            font-size: 11px;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            margin: 15px 0 10px 12px;
-        }
-
-        .menu-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 16px;
-            color: var(--text-muted);
-            text-decoration: none;
-            border-radius: 14px;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .menu-item i {
-            font-size: 18px;
-            width: 30px;
-            transition: transform 0.3s ease;
-        }
-
-        .menu-item:hover {
-            background: var(--light-pink);
-            color: var(--secondary-pink);
-            transform: translateX(4px);
-        }
-
-        .menu-item.active {
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
-            color: white;
-            box-shadow: 0 8px 18px rgba(255, 67, 112, 0.3);
-        }
-
-        .menu-item.active i {
-            color: white;
-        }
-
-        .badge-count {
-            margin-left: auto;
-            background: var(--secondary-pink);
-            color: white;
-            font-size: 11px;
-            font-weight: 600;
-            padding: 2px 8px;
-            border-radius: 20px;
-        }
-
-        .menu-item.active .badge-count {
-            background: white;
-            color: var(--secondary-pink);
-        }
-
-        .sidebar-footer {
-            padding: 20px 15px;
-            border-top: 1px solid rgba(255, 182, 193, 0.3);
-        }
-
-        .btn-logout {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            padding: 12px;
-            background: #ffe3eb;
-            color: var(--dark-pink);
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-logout:hover {
-            background: var(--secondary-pink);
-            color: white;
-            box-shadow: 0 6px 15px rgba(255, 67, 112, 0.3);
-        }
-
-        /* --- MAIN CONTENT BAR --- */
-        .main-content {
-            margin-left: var(--sidebar-width);
-            flex: 1;
-            padding: 30px;
-            min-height: 100vh;
-        }
-
-        /* Top Navbar */
-        .top-navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            padding: 16px 25px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: var(--shadow-soft);
-            margin-bottom: 30px;
-        }
-
-        .search-box {
-            position: relative;
-            width: 300px;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 10px 15px 10px 40px;
-            border: 1.5px solid #ffd0dd;
-            border-radius: 12px;
-            outline: none;
-            font-size: 13px;
-            background: #fff;
-            transition: all 0.3s;
-        }
-
-        .search-box input:focus {
-            border-color: var(--primary-pink);
-            box-shadow: 0 0 0 3px rgba(255, 101, 132, 0.15);
-        }
-
-        .search-box i {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #ff85a2;
-        }
-
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .notif-btn {
-            position: relative;
-            background: var(--light-pink);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            color: var(--secondary-pink);
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .notif-btn:hover {
-            background: var(--secondary-pink);
-            color: white;
-        }
-
-        .notif-dot {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 8px;
-            height: 8px;
-            background: #ff2a5f;
-            border-radius: 50%;
-            border: 2px solid white;
-        }
-
-        .profile-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .profile-avatar {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--primary-pink);
-        }
-
-        .profile-text h4 {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .profile-text p {
-            font-size: 11px;
-            color: var(--text-muted);
-        }
-
-        /* Content Header */
-        .welcome-card {
-            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
-            border-radius: 24px;
-            padding: 30px;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(255, 117, 140, 0.3);
-            margin-bottom: 30px;
-        }
-
-        .welcome-card h1 {
-            font-size: 26px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .welcome-card p {
-            font-size: 14px;
-            opacity: 0.9;
-            max-width: 500px;
-        }
-
-        .welcome-card i.bg-icon {
-            position: absolute;
-            right: -20px;
-            bottom: -30px;
-            font-size: 180px;
-            opacity: 0.15;
-            color: white;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 22px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 208, 221, 0.5);
-            box-shadow: var(--shadow-soft);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-details h3 {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--dark-pink);
-        }
-
-        .stat-details p {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-
-        .stat-icon {
-            width: 55px;
-            height: 55px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-        }
-
-        .icon-pink-1 { background: #ffe3ec; color: #ff4370; }
-        .icon-pink-2 { background: #f0e6ff; color: #8a2be2; }
-        .icon-pink-3 { background: #e3f2fd; color: #2196f3; }
-        .icon-pink-4 { background: #e8f5e9; color: #4caf50; }
-
-        /* Data Table Section */
-        .table-card {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            border: 1px solid rgba(255, 208, 221, 0.5);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .table-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .table-header h3 {
-            font-size: 18px;
-            color: var(--dark-pink);
-        }
-
-        .btn-add {
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 6px 15px rgba(255, 67, 112, 0.25);
-            transition: all 0.3s;
-        }
-
-        .btn-add:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 67, 112, 0.35);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-
-        th {
-            padding: 12px 15px;
-            font-size: 12px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            background: #fff0f5;
-            border-radius: 8px;
-        }
-
-        td {
-            padding: 14px 15px;
-            font-size: 13px;
-            border-bottom: 1px solid #ffeef3;
-        }
-
-        tr:hover td {
-            background-color: #fff9fb;
-        }
-
-        .badge-status {
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        .status-active { background: #e8f5e9; color: #2e7d32; }
-        .status-leave { background: #fff8e1; color: #f57f17; }
-
-        .action-btns i {
-            margin-right: 10px;
-            cursor: pointer;
-            font-size: 15px;
-            transition: color 0.2s;
-        }
-
-        .btn-edit { color: #ffb703; }
-        .btn-delete { color: #ff4d6d; }
-        .btn-edit:hover { color: #fb8500; }
-        .btn-delete:hover { color: #c1121f; }
-
-        /* Responsive Breakpoints */
-        @media (max-width: 992px) {
-            .sidebar { width: 80px; }
-            .sidebar-brand h3, .menu-category, .menu-item span, .badge-count, .btn-logout span { display: none; }
-            .sidebar-brand { justify-content: center; }
-            .menu-item { justify-content: center; padding: 15px; }
-            .menu-item i { width: auto; }
-            .main-content { margin-left: 80px; }
-        }
-
-        @media (max-width: 768px) {
-            .top-navbar { flex-direction: column; gap: 15px; align-items: stretch; }
-            .search-box { width: 100%; }
-            .main-content { padding: 15px; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- SIDEBAR NAVIGASI -->
-    <aside class="sidebar">
-        <div class="sidebar-brand">
-            <i class="fa-solid fa-gem"></i>
-            <h3>PinkAdmin</h3>
-        </div>
-
-        <div class="sidebar-menu">
-            <div class="menu-category">Utama</div>
-            <a href="#" class="menu-item active">
-                <i class="fa-solid fa-chart-pie"></i>
-                <span>Dashboard</span>
-            </a>
-
-            <div class="menu-category">Kepegawaian</div>
-            <a href="#" class="menu-item">
-                <i class="fa-solid fa-users"></i>
-                <span>Data Karyawan</span>
-                <span class="badge-count">128</span>
-            </a>
-            <a href="#" class="menu-item">
-                <i class="fa-solid fa-user-plus"></i>
-                <span>Input Data Baru</span>
-            </a>
-            <a href="#" class="menu-item">
-                <i class="fa-solid fa-briefcase"></i>
-                <span>Jabatan & Divisi</span>
-            </a>
-            <a href="#" class="menu-item">
-                <i class="fa-solid fa-calendar-check"></i>
-                <span>Presensi & Absensi</span>
-            </a>
-
-            <div class="menu-category">Keuangan & Laporan</div>
-            <a href="#" class="menu-item">
-                <i class="fa-solid fa-wallet"></i>
-                <span>Penggajian (Payroll)</span>
-            </a>
-            <a href="#" class="menu-item">
-                <i class="fa-solid fa-file-invoice"></i>
-                <span>Laporan Bulanan</span>
-            </a>
-
-            <div class="menu-category">Sistem</div>
-            <a href="#" class="menu-item">
-                <i class="fa-solid fa-sliders"></i>
-                <span>Pengaturan Sistem</span>
-            </a>
-        </div>
-
-        <div class="sidebar-footer">
-            <button class="btn-logout" onclick="logout()">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <span>Keluar (Logout)</span>
-            </button>
-        </div>
-    </aside>
-
-    <!-- MAIN CONTENT AREA -->
-    <main class="main-content">
-        <!-- Top Navbar -->
-        <header class="top-navbar">
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Cari karyawan, jabatan, atau menu...">
-            </div>
-
-            <div class="user-profile">
-                <button class="notif-btn">
-                    <i class="fa-solid fa-bell"></i>
-                    <span class="notif-dot"></span>
-                </button>
-                <div class="profile-info">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" alt="Avatar" class="profile-avatar">
-                    <div class="profile-text">
-                        <h4>Clarissa Pink</h4>
-                        <p>Super Administrator</p>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <!-- Welcome Banner -->
-        <section class="welcome-card">
-            <h1>Selamat Datang Kembali! ✨</h1>
-            <p>Kelola data pegawai, pengajuan izin, dan laporan sistem kepegawaian Anda dengan mudah hari ini.</p>
-            <i class="fa-solid fa-crown bg-icon"></i>
-        </section>
-
-        <!-- Ringkasan Statistik -->
-        <section class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-details">
-                    <h3>128</h3>
-                    <p>Total Karyawan</p>
-                </div>
-                <div class="stat-icon icon-pink-1">
-                    <i class="fa-solid fa-users"></i>
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-details">
-                    <h3>12</h3>
-                    <p>Jabatan / Divisi</p>
-                </div>
-                <div class="stat-icon icon-pink-2">
-                    <i class="fa-solid fa-id-badge"></i>
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-details">
-                    <h3>96%</h3>
-                    <p>Kehadiran Hari Ini</p>
-                </div>
-                <div class="stat-icon icon-pink-3">
-                    <i class="fa-solid fa-chart-line"></i>
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-details">
-                    <h3>5</h3>
-                    <p>Pengajuan Cuti</p>
-                </div>
-                <div class="stat-icon icon-pink-4">
-                    <i class="fa-solid fa-envelope-open-text"></i>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tabel Ringkasan Data Karyawan -->
-        <section class="table-card">
-            <div class="table-header">
-                <h3>Karyawan Terbaru</h3>
-                <button class="btn-add">
-                    <i class="fa-solid fa-plus"></i> Tambah Karyawan
-                </button>
-            </div>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nama Karyawan</th>
-                        <th>Jabatan</th>
-                        <th>Divisi</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Siti Nurhaliza</strong></td>
-                        <td>UI/UX Designer</td>
-                        <td>Creative & Product</td>
-                        <td><span class="badge-status status-active">Aktif</span></td>
-                        <td class="action-btns">
-                            <i class="fa-solid fa-pen-to-square btn-edit" title="Edit"></i>
-                            <i class="fa-solid fa-trash btn-delete" title="Hapus"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Amanda Manopo</strong></td>
-                        <td>HR Specialist</td>
-                        <td>Human Capital</td>
-                        <td><span class="badge-status status-active">Aktif</span></td>
-                        <td class="action-btns">
-                            <i class="fa-solid fa-pen-to-square btn-edit" title="Edit"></i>
-                            <i class="fa-solid fa-trash btn-delete" title="Hapus"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Riana Putri</strong></td>
-                        <td>Frontend Developer</td>
-                        <td>IT & Engineering</td>
-                        <td><span class="badge-status status-leave">Cuti</span></td>
-                        <td class="action-btns">
-                            <i class="fa-solid fa-pen-to-square btn-edit" title="Edit"></i>
-                            <i class="fa-solid fa-trash btn-delete" title="Hapus"></i>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </main>
-
-    <script>
-        function logout() {
-            if(confirm("Apakah Anda yakin ingin keluar dari halaman dashboard?")) {
-                window.location.href = "index.html";
-            }
-        }
-    </script>
-</body>
-</html>
-
-// Pada index.html
-function handleLogin(event) {
-    event.preventDefault();
-    
-    const username = document.getElementById('username').value.trim();
-    const password = document.getElementById('password').value.trim();
-
-    if (username === 'admin' && password === 'pink123') {
-        showToast('✨ Login Berhasil!', 'success');
-        setTimeout(() => {
-            // Arahkan otomatis ke halaman dashboard
-            window.location.href = "dashboard.html";
-        }, 1000);
-    } else {
-        showToast('❌ Username atau Password salah!', 'error');
-    }
-}
